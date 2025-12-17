@@ -3,13 +3,15 @@ package com.example.git_test;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @SpringBootApplication
 public class GitTestApplication {
 
-	public String purchase(@PathVariable String userName,@PathVariable double amount,
-						   @PathVariable String productName){
-		return "Hi"+ userName + "Order for" + productName + "with amount" + amount + "stored successfully";
+	@PostMapping("/purchase")
+	public String purchase(@RequestBody Order order){
+		return "Hi"+ order.getUserName() + "Order for" + order.getProductName() + "with amount" + order.getPrice() + "stored successfully";
 	}
 
 	public static void main(String[] args) {
